@@ -1,0 +1,3 @@
+project=autocomplete
+test=rspec
+template=erb
