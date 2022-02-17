@@ -2,6 +2,10 @@
 
 Welcome to your new Hanami project!
 
+## Using TailwindCSS
+
+npx tailwindcss -i apps/web/assets/stylesheets/src/main.css -o apps/web/assets/stylesheets/main.css --watch
+
 ## Setup
 
 How to run tests:

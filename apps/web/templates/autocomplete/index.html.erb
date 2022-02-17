@@ -1,17 +1,48 @@
-<h1>Recipes Search</h1>
-
-<button class="bg-cyan-500 shadow-lg shadow-cyan-500/50 ...">Subscribe</button>
-
 <!doctype html>
 <html>
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="/dist/output.css" rel="stylesheet">
 </head>
+
 <body>
-  <h1 class="text-3xl font-bold underline">
-    Hello world!
-  </h1>
+
+  <h1 class="font-medium leading-tight text-6xl p-3 mt-0 mb-2 text-black-600 font-mono">Recipes Search</h1>
+
+  <div class="grid grid-cols-3 gap-none mt-8">
+    <div class="bg-gray-100"></div>
+    <div class="bg-gray-100">
+
+      <div class="bg-gray-100 select-none">
+        <div class="mx-auto mt-4 py-8">
+          <div class="bg-white w-full h-16 rounded-xl mb-3 shadow-lg p-2">
+            <input type="text" placeholder="Search"
+              class="w-full h-full p-2 text-2xl rounded-lg focus:outline-none focus:ring focus:border-blue-300" />
+          </div>
+          <div class="w-full flex p-3 pl-4 items-center hover:bg-gray-300 rounded-lg cursor-pointer">
+            <div class="mr-4">
+              <div class="h-9 w-9 rounded-sm flex items-center justify-center text-3xl">
+                <svg></svg>
+              </div>
+            </div>
+            <div>
+              <div class="font-bold text-lg">Name: Recipe</div>
+              <div class="text-xs text-gray-500">
+                <span class="mr-2">No: 12345</span>
+                <span class="mr-2">calories: 10000</span>
+                <span class="mr-2">ingredients: tomato</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <div class="bg-gray-100"></div>
+  </div>
+
 </body>
+
 </html>
