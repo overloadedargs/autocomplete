@@ -1,10 +1,14 @@
 # Autocomplete
 
-Welcome to your new Hanami project!
+Welcome to Recipes Search Finder
 
 ## Using TailwindCSS
 
 npx tailwindcss -i apps/web/assets/stylesheets/src/main.css -o apps/web/assets/stylesheets/main.css --watch
+
+## Compiling es6
+
+npx babel apps/web/assets/javascripts/src/\* --out-dir apps/web/assets/javascripts/
 
 ## Setup
 
