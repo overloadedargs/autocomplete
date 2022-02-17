@@ -14,8 +14,7 @@ module.exports = class RecipeClient {
       async makeRequest(method, url, data = null, config = {}) {
         const mergedConfig = deepmerge({
           headers: {
-            'Content-Type': 'application/json',
-
+            'Content-Type': 'application/json'
           },
           params: {
             app_id: this.appId,

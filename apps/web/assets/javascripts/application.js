@@ -383,9 +383,11 @@ var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefau
 
 var _RecipeClient = _interopRequireDefault(require("./RecipeClient"));
 
+var debounce = require('./debounce');
+
 var client = new _RecipeClient["default"]({
-  appId: 'db174bf3',
-  appKey: '90597395fbf45646a5f2d9f54d5c8de1'
+  appId: '381d9f12',
+  appKey: 'd21ca6af4c4a6746f24a3cb7eb250429'
 });
 
 function callAPI(queryString) {
@@ -396,44 +398,55 @@ function callAPI(queryString) {
 } // DOM elements
 
 
-var searchInput = document.querySelector('.search');
+var searchInput = document.querySelector('.search-input');
 var suggestions = document.querySelector('.suggestions');
-var searchHtml = suggestions.innerHTML; // Display matches
+var searchAppend = document.querySelector('.search'); // Display matches
 
 function displayMatches() {
-  var matches = callAPI(this.value);
+  var searchVal = document.querySelector('.search-input');
+  var matches = callAPI(searchVal.value);
   matches.then(function (data) {
-    console.log(data);
-    data.hits.forEach(function (key, value) {
-      console.log(key);
+    var list = document.querySelector('.suggest-list');
+
+    if (list !== null) {
+      list.innerHTML = "";
+    }
+
+    data.hits.forEach(function (recipe) {
+      var parent = document.createElement('div');
       var clone = document.createElement('div');
-      clone.innerHTML = searchHtml;
-      var recipeName = suggestions.querySelector('.recipe-name');
-      recipeName.innerHTML = key.recipe.label;
-      searchInput.appendChild(clone);
+      clone.innerHTML = suggestions.innerHTML;
+      var recipeName = clone.querySelector('.recipe-name');
+      recipeName.innerHTML = recipe.recipe.label;
+      list.appendChild(clone);
       return;
     });
   });
-} // Event listener
+}
 
+var debounceMatches = debounce.debounce(function () {
+  displayMatches();
+}, 180); // Event listener
 
-searchInput.addEventListener('keyup', displayMatches);
+searchInput.addEventListener('keyup', debounceMatches);
 
-},{"./RecipeClient":2,"@babel/runtime/helpers/interopRequireDefault":12}],4:[function(require,module,exports){
+},{"./RecipeClient":2,"./debounce":4,"@babel/runtime/helpers/interopRequireDefault":12}],4:[function(require,module,exports){
 "use strict";
 
-var debounce = function debounce(callback, wait) {
-  var timeoutId = null;
-  return function () {
-    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
+module.exports = {
+  debounce: function debounce(callback, wait) {
+    var timeoutId = null;
+    return function () {
+      for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+        args[_key] = arguments[_key];
+      }
 
-    window.clearTimeout(timeoutId);
-    timeoutId = window.setTimeout(function () {
-      callback.apply(null, args);
-    }, wait);
-  };
+      window.clearTimeout(timeoutId);
+      timeoutId = window.setTimeout(function () {
+        callback.apply(null, args);
+      }, wait);
+    };
+  }
 };
 
 },{}],5:[function(require,module,exports){

@@ -1,8 +1,10 @@
-import RecipeClient from './RecipeClient'
+import RecipeClient from './RecipeClient';
+
+var debounce = require('./debounce');
 
 const client = new RecipeClient({
-  appId: 'db174bf3',
-  appKey: '90597395fbf45646a5f2d9f54d5c8de1'
+  appId: '381d9f12',
+  appKey: 'd21ca6af4c4a6746f24a3cb7eb250429'
 });
 
 function callAPI(queryString) {
@@ -12,27 +14,36 @@ function callAPI(queryString) {
 }
 
 // DOM elements
-const searchInput = document.querySelector('.search');
+const searchInput = document.querySelector('.search-input');
 const suggestions = document.querySelector('.suggestions');
-const searchHtml = suggestions.innerHTML;
+const searchAppend = document.querySelector('.search');
 
 // Display matches
 function displayMatches () {
-  const matches = callAPI(this.value);
+  let searchVal = document.querySelector('.search-input');
+  const matches = callAPI(searchVal.value);
+  
   matches.then(data => {
- 
-    console.log(data);
-    data.forEach((key, value) => {
-      console.log(key);
+    let list = document.querySelector('.suggest-list');
+    if (list !== null) { 
+        list.innerHTML = "";
+     }
+
+    data.hits.forEach(recipe => {
+      let parent = document.createElement('div');
       let clone = document.createElement('div');
-      clone.innerHTML = searchHtml;
-      let recipeName = suggestions.querySelector('.recipe-name');
-      recipeName.innerHTML = key.recipe.label;
-      searchInput.appendChild(clone);
+      clone.innerHTML = suggestions.innerHTML;
+      let recipeName = clone.querySelector('.recipe-name');
+      recipeName.innerHTML = recipe.recipe.label;
+      list.appendChild(clone);
       return;
     });
   });
 }
 
+var debounceMatches = debounce.debounce(function() {
+  displayMatches();
+}, 180);
+
 // Event listener
-searchInput.addEventListener('keyup', displayMatches);
+searchInput.addEventListener('keyup', debounceMatches);

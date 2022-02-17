@@ -1,4 +1,6 @@
-const debounce = (callback, wait) => {
+module.exports = {
+
+debounce : function(callback, wait) {
   let timeoutId = null;
   return (...args) => {
     window.clearTimeout(timeoutId);
@@ -6,4 +8,7 @@ const debounce = (callback, wait) => {
       callback.apply(null, args);
     }, wait);
   };
+}
+
+
 }
