@@ -8,7 +8,9 @@ npx tailwindcss -i apps/web/assets/stylesheets/src/main.css -o apps/web/assets/s
 
 ## Compiling es6
 
-npx babel apps/web/assets/javascripts/src/\* --out-dir apps/web/assets/javascripts/
+`npx babel apps/web/assets/javascripts/src/* --out-dir apps/web/assets/javascripts/`
+
+`npx browserify apps/web/assets/javascripts/src/* -o apps/web/assets/javascripts/application.js -t [ babelify --presets [ @babel/preset-env ] --plugins [ babel-plugin-transform-class-properties ] ]`
 
 ## Setup
 
