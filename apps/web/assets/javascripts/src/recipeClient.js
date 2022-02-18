@@ -1,53 +1,52 @@
 // Code directly taken from edamam-api Node module
-
 const http = require('axios');
 const deepmerge = require('deepmerge');
 
 module.exports = class RecipeClient {
-    constructor({ appKey, appId }) {
-        this.appKey = appKey;
-        this.appId = appId;
-        this.basePath = 'http://api.edamam.com/';
-        this.apiUrl = 'http://api.edamam.com/api/';
-      }
+  constructor({ appKey, appId }) {
+    this.appKey = appKey;
+    this.appId = appId;
+    this.basePath = 'http://api.edamam.com/';
+    this.apiUrl = 'http://api.edamam.com/api/';
+  }
 
-      async makeRequest(method, url, data = null, config = {}) {
-        const mergedConfig = deepmerge({
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          params: {
-            app_id: this.appId,
-            app_key: this.appKey
-          }
-        }, config);
-    
-        const response = await http[method](
-          url.includes('*')
-            ? `${this.basePath}${url.replace('*', '')}`
-            : `${this.apiUrl}${url}`
-          ,
-          ['post', 'put'].includes(method.toLowerCase())
-            ? JSON.stringify(data)
-            : mergedConfig,
-          ['post', 'put'].includes(method.toLowerCase()) && mergedConfig
-        );
-    
-        return this.unpackResponse(response);
+  async makeRequest(method, url, data = null, config = {}) {
+    const mergedConfig = deepmerge({
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      params: {
+        app_id: this.appId,
+        app_key: this.appKey
       }
+    }, config);
 
-      async get(url, config = {}) {
-        return this.makeRequest('get', url, null, config);
-      }
+    const response = await http[method](
+      url.includes('*')
+        ? `${this.basePath}${url.replace('*', '')}`
+        : `${this.apiUrl}${url}`
+      ,
+      ['post', 'put'].includes(method.toLowerCase())
+        ? JSON.stringify(data)
+        : mergedConfig,
+      ['post', 'put'].includes(method.toLowerCase()) && mergedConfig
+    );
 
-      async unpackResponse(response) {
-        switch (response.status) {
-          case 200:
-            return response.data;
-          default:
-            throw new Error(`${response.status} response from server: ${response.data}`);
-        }
-      }
+    return this.unpackResponse(response);
+  }
+
+  async get(url, config = {}) {
+    return this.makeRequest('get', url, null, config);
+  }
+
+  async unpackResponse(response) {
+    switch (response.status) {
+      case 200:
+        return response.data;
+      default:
+        throw new Error(`${response.status} response from server: ${response.data}`);
+    }
+  }
 
   search({
     query = null,
@@ -81,9 +80,9 @@ module.exports = class RecipeClient {
       ...dishTypeLabels.map(dtl => ['dishType', dtl]),
       ...excludedIngredients.map(ei => ['excluded', ei])
     ]
-    .map(([key, value]) => [null, undefined].includes(value) ? null : `${key}=${encodeURIComponent(value)}`)
-    .filter(x => x)
-    .join('&');
+      .map(([key, value]) => [null, undefined].includes(value) ? null : `${key}=${encodeURIComponent(value)}`)
+      .filter(x => x)
+      .join('&');
 
     return this.get(`*search?${params}`, {});
   }

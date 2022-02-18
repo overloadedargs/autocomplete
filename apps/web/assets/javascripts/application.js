@@ -418,10 +418,12 @@ function displayMatches() {
       var calories = clone.querySelector('.calories');
       var ingredients = clone.querySelector('.ingredients');
       var image = clone.querySelector('.recipe-image');
+      var link = clone.querySelector('.recipe-url');
       recipeName.innerHTML = "Name: ".concat(recipe.recipe.label);
       dishType.innerHTML = "Dish Type: ".concat(recipe.recipe.dishType[0]);
       calories.innerHTML = "Calories: ".concat(Math.round(recipe.recipe.calories));
       ingredients.innerHTML = "Ingredients: ".concat(recipe.recipe.ingredientLines.join(', '), " ");
+      link.href = recipe.recipe.url;
       image.src = recipe.recipe.image;
       list.appendChild(clone);
       return;

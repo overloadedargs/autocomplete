@@ -35,10 +35,12 @@ function displayMatches() {
       let calories = clone.querySelector('.calories');
       let ingredients = clone.querySelector('.ingredients');
       let image = clone.querySelector('.recipe-image');
+      let link = clone.querySelector('.recipe-url');
       recipeName.innerHTML = `Name: ${recipe.recipe.label}`;
       dishType.innerHTML = `Dish Type: ${recipe.recipe.dishType[0]}`;
       calories.innerHTML = `Calories: ${Math.round(recipe.recipe.calories)}`;
       ingredients.innerHTML = `Ingredients: ${recipe.recipe.ingredientLines.join(', ')} `;
+      link.href = recipe.recipe.url;
       image.src = recipe.recipe.image;
       list.appendChild(clone);
       return;
