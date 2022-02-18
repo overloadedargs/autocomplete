@@ -1,12 +1,12 @@
 <h1 class="font-medium leading-tight text-6xl p-3 mt-0 mb-2 text-black-600 font-mono">Recipes Search</h1>
 
-<div class="grid grid-cols-3 gap-none mt-8">
+<div class="grid grid-cols-6 gap-none mt-8">
   <div class="bg-gray-100"></div>
-  <div class="bg-gray-100">
+  <div class="bg-gray-100 col-start-2 col-span-4">
 
     <div class="bg-gray-100 select-none">
       <div class="mx-auto mt-4 py-8">
-        <div class="search bg-white w-full h-300 rounded-xl mb-3 shadow-lg p-2">
+        <div class="search bg-white w-96 h-300 rounded-xl mb-3 shadow-lg p-2">
           <form class="search-form">
             <input type="text" placeholder="Search"
               class="search-input w-full h-full p-2 text-2xl rounded-lg focus:outline-none focus:ring focus:border-blue-300" />
@@ -16,18 +16,20 @@
         <div class="suggest-list">
           <!-- items -->
 
-          <div class="suggestions w-full flex p-3 pl-4 items-center hover:bg-gray-300 rounded-lg cursor-pointer">
+          <div
+            class="mr-2 suggestions w-full flex pt-30 p-3 pl-4 items-center hover:bg-gray-300 rounded-lg cursor-pointer">
             <div class="mr-4">
-              <div class="h-9 w-9 rounded-sm flex items-center justify-center text-3xl">
-                <svg></svg>
+              <div class="h-32 w-32 rounded-sm flex items-center justify-center">
+                <img class="recipe-image"
+                  src="https://www.edamam.com/web-img/241/241127017bafd396421fc3c5b3eb0483.jpg" />
               </div>
             </div>
             <div>
               <div class="font-bold text-lg recipe-name">Name: Recipe</div>
               <div class="text-xs text-gray-500">
-                <span class="mr-2">No: 12345</span>
-                <span class="mr-2">calories: 10000</span>
-                <span class="mr-2">ingredients: tomato</span>
+                <div class="dish-type">Dish Type: ...</div>
+                <div class="calories">Calories: ...</div>
+                <div class="ingredients">Ingredients: ...</div>
               </div>
             </div>
           </div>

@@ -399,8 +399,7 @@ function callAPI(queryString) {
 
 
 var searchInput = document.querySelector('.search-input');
-var suggestions = document.querySelector('.suggestions');
-var searchAppend = document.querySelector('.search'); // Display matches
+var suggestions = document.querySelector('.suggestions'); // Display matches
 
 function displayMatches() {
   var searchVal = document.querySelector('.search-input');
@@ -413,11 +412,17 @@ function displayMatches() {
     }
 
     data.hits.forEach(function (recipe) {
-      var parent = document.createElement('div');
-      var clone = document.createElement('div');
-      clone.innerHTML = suggestions.innerHTML;
+      var clone = suggestions.cloneNode(true);
       var recipeName = clone.querySelector('.recipe-name');
-      recipeName.innerHTML = recipe.recipe.label;
+      var dishType = clone.querySelector('.dish-type');
+      var calories = clone.querySelector('.calories');
+      var ingredients = clone.querySelector('.ingredients');
+      var image = clone.querySelector('.recipe-image');
+      recipeName.innerHTML = "Name: ".concat(recipe.recipe.label);
+      dishType.innerHTML = "Dish Type: ".concat(recipe.recipe.dishType[0]);
+      calories.innerHTML = "Calories: ".concat(Math.round(recipe.recipe.calories));
+      ingredients.innerHTML = "Ingredients: ".concat(recipe.recipe.ingredientLines.join(', '), " ");
+      image.src = recipe.recipe.image;
       list.appendChild(clone);
       return;
     });

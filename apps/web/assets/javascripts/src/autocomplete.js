@@ -16,32 +16,37 @@ function callAPI(queryString) {
 // DOM elements
 const searchInput = document.querySelector('.search-input');
 const suggestions = document.querySelector('.suggestions');
-const searchAppend = document.querySelector('.search');
 
 // Display matches
-function displayMatches () {
+function displayMatches() {
   let searchVal = document.querySelector('.search-input');
   const matches = callAPI(searchVal.value);
-  
+
   matches.then(data => {
     let list = document.querySelector('.suggest-list');
-    if (list !== null) { 
-        list.innerHTML = "";
-     }
+    if (list !== null) {
+      list.innerHTML = "";
+    }
 
     data.hits.forEach(recipe => {
-      let parent = document.createElement('div');
-      let clone = document.createElement('div');
-      clone.innerHTML = suggestions.innerHTML;
+      let clone = suggestions.cloneNode(true);
       let recipeName = clone.querySelector('.recipe-name');
-      recipeName.innerHTML = recipe.recipe.label;
+      let dishType = clone.querySelector('.dish-type');
+      let calories = clone.querySelector('.calories');
+      let ingredients = clone.querySelector('.ingredients');
+      let image = clone.querySelector('.recipe-image');
+      recipeName.innerHTML = `Name: ${recipe.recipe.label}`;
+      dishType.innerHTML = `Dish Type: ${recipe.recipe.dishType[0]}`;
+      calories.innerHTML = `Calories: ${Math.round(recipe.recipe.calories)}`;
+      ingredients.innerHTML = `Ingredients: ${recipe.recipe.ingredientLines.join(', ')} `;
+      image.src = recipe.recipe.image;
       list.appendChild(clone);
       return;
     });
   });
 }
 
-var debounceMatches = debounce.debounce(function() {
+var debounceMatches = debounce.debounce(function () {
   displayMatches();
 }, 180);
 
