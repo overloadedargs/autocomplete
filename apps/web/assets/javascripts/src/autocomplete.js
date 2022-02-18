@@ -9,7 +9,6 @@ const client = new RecipeClient({
 
 function callAPI(queryString) {
   let results = client.search({ query: queryString });
-
   return results;
 }
 
@@ -20,14 +19,15 @@ const suggestions = document.querySelector('.suggestions');
 // Display matches
 function displayMatches() {
   let searchVal = document.querySelector('.search-input');
+
   const matches = callAPI(searchVal.value);
 
-  matches.then(data => {
-    let list = document.querySelector('.suggest-list');
-    if (list !== null) {
-      list.innerHTML = "";
-    }
+  let list = document.querySelector('.suggest-list');
+  if (list !== null) {
+    list.innerHTML = "";
+  }
 
+  matches.then(data => {
     data.hits.forEach(recipe => {
       let clone = suggestions.cloneNode(true);
       let recipeName = clone.querySelector('.recipe-name');
@@ -45,12 +45,19 @@ function displayMatches() {
       list.appendChild(clone);
       return;
     });
+  }).catch(err => {
+    let clone = suggestions.cloneNode(true);
+    let recipeName = clone.querySelector('.recipe-name');
+    let image = clone.querySelector('.recipe-image');
+    image.src = '';
+    recipeName.innerHTML = `${err.message}`;
+    list.appendChild(clone);
   });
 }
 
 var debounceMatches = debounce.debounce(function () {
   displayMatches();
-}, 180);
+}, 2000);
 
 // Event listener
 searchInput.addEventListener('keyup', debounceMatches);

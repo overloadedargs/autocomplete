@@ -1,4 +1,5 @@
 // Code directly taken from edamam-api Node module
+const { default: axios } = require('axios');
 const http = require('axios');
 const deepmerge = require('deepmerge');
 
@@ -10,7 +11,7 @@ module.exports = class RecipeClient {
     this.apiUrl = 'http://localhost:8010/proxy/api/';
   }
 
-  async makeRequest(method, url, data = null, config = {}) {
+  makeRequest(method, url, data = null, config = {}) {
     const mergedConfig = deepmerge({
       headers: {
         'Content-Type': 'application/json'
@@ -21,31 +22,27 @@ module.exports = class RecipeClient {
       }
     }, config);
 
-    const response = await http[method](
+    const response = axios.get(
       url.includes('*')
         ? `${this.basePath}${url.replace('*', '')}`
         : `${this.apiUrl}${url}`
       ,
-      ['post', 'put'].includes(method.toLowerCase())
-        ? JSON.stringify(data)
-        : mergedConfig,
-      ['post', 'put'].includes(method.toLowerCase()) && mergedConfig
-    );
-
-    return this.unpackResponse(response);
+      mergedConfig
+    ).then(r => {
+      return r.data;
+    }).catch(error => {
+      switch (error.response.status) {
+        case 429:
+          throw new Error(`Too many requests, please wait..`);
+        default:
+          throw new Error(`${err}`);
+      }
+    });
+    return response;
   }
 
-  async get(url, config = {}) {
+  get(url, config = {}) {
     return this.makeRequest('get', url, null, config);
-  }
-
-  async unpackResponse(response) {
-    switch (response.status) {
-      case 200:
-        return response.data;
-      default:
-        throw new Error(`${response.status} response from server: ${response.data}`);
-    }
   }
 
   search({
