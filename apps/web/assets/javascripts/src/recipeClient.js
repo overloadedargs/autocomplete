@@ -6,8 +6,8 @@ module.exports = class RecipeClient {
   constructor({ appKey, appId }) {
     this.appKey = appKey;
     this.appId = appId;
-    this.basePath = 'http://api.edamam.com/';
-    this.apiUrl = 'http://api.edamam.com/api/';
+    this.basePath = 'http://localhost:8010/proxy/';
+    this.apiUrl = 'http://localhost:8010/proxy/api/';
   }
 
   async makeRequest(method, url, data = null, config = {}) {

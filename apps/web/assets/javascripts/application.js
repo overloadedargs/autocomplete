@@ -213,8 +213,8 @@ module.exports = /*#__PURE__*/function () {
     (0, _classCallCheck2["default"])(this, RecipeClient);
     this.appKey = appKey;
     this.appId = appId;
-    this.basePath = 'http://api.edamam.com/';
-    this.apiUrl = 'http://api.edamam.com/api/';
+    this.basePath = 'http://localhost:8010/proxy/';
+    this.apiUrl = 'http://localhost:8010/proxy/api/';
   }
 
   (0, _createClass2["default"])(RecipeClient, [{
@@ -485,8 +485,8 @@ module.exports = /*#__PURE__*/function () {
     (0, _classCallCheck2["default"])(this, RecipeClient);
     this.appKey = appKey;
     this.appId = appId;
-    this.basePath = 'http://api.edamam.com/';
-    this.apiUrl = 'http://api.edamam.com/api/';
+    this.basePath = 'http://localhost:8010/proxy/';
+    this.apiUrl = 'http://localhost:8010/proxy/api/';
   }
 
   (0, _createClass2["default"])(RecipeClient, [{
