@@ -2,6 +2,8 @@
 /public/assets*
 /tmp
 .env.local
+.env.development
+.env.test
 .env.*.local
 /node_modules
 .DS_Store

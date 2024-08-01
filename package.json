@@ -1,4 +1,10 @@
 {
+  "name": "autocomplete",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "hanami-assets": "^2.0.3"
+  },
   "devDependencies": {
     "@babel/cli": "^7.17.3",
     "@babel/core": "^7.17.4",
