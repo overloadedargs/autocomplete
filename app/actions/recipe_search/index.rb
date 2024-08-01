@@ -1,8 +1,7 @@
 module Web
     module Controllers
-      module Autocomplete
-        class Index
-          include Web::Action
+      module RecipeSearch
+        class Index < Hanami::Action
   
           def call(params)
           end

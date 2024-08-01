@@ -8,8 +8,9 @@ module Autocomplete
     #
     # Example:
     # get '/hello', to: ->(env) { [200, {}, ['Hello from Hanami!']] }
-    root to: 'autocomplete#index'
+    root to: 'finder.index'
 
-    get '/recipe_search', to: "recipe_search#index"
+    #get "/recipe_search", to: "recipe_search.index" 
+    get "/finder", to: "finder.index"
   end
 end

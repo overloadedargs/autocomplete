@@ -20,6 +20,8 @@ How to run tests:
 % bundle exec rake
 ```
 
+hanami assets compile
+
 How to run the development console:
 
 ```
