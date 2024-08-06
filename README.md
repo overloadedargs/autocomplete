@@ -4,7 +4,7 @@ Welcome to Recipes Search Finder
 
 ## Using TailwindCSS
 
-npx tailwindcss -i apps/web/assets/stylesheets/src/main.css -o apps/web/assets/stylesheets/main.css --watch
+npx tailwindcss -i app/assets/css/src/main.css -o app/assets/css/main.css --watch
 
 ## Compiling es6
 
