@@ -12,8 +12,6 @@ Hanami also needs to compile assets into public/assets, check assets/js/app.js f
 
 ```hanami assets compile```
 
-How to run the development console:
-
 ## Compiling es6
 
 `npx babel apps/web/assets/javascripts/src/* --out-dir apps/web/assets/javascripts/`
@@ -27,6 +25,15 @@ How to run tests:
 ```
 % bundle exec rake
 ```
+
+or 
+
+```
+% bundle exec rspec
+```
+
+
+How to run the development console:
 
 ```
 % bundle exec hanami console
