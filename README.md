@@ -6,6 +6,10 @@ Welcome to Recipes Search Finder
 
 npx tailwindcss -i app/assets/css/src/main.css -o app/assets/css/main.css --watch
 
+```hanami assets compile```
+
+How to run the development console:
+
 ## Compiling es6
 
 `npx babel apps/web/assets/javascripts/src/* --out-dir apps/web/assets/javascripts/`
@@ -19,10 +23,6 @@ How to run tests:
 ```
 % bundle exec rake
 ```
-
-hanami assets compile
-
-How to run the development console:
 
 ```
 % bundle exec hanami console
