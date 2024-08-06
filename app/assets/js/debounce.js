@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   debounce: function (callback, wait) {
     let timeoutId = null;
     return (...args) => {

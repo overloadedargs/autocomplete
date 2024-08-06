@@ -19,9 +19,12 @@ Hanami also needs to compile assets into public/assets, check assets/js/app.js f
 
 ## Compiling es6
 
-`npx babel apps/web/assets/javascripts/src/* --out-dir apps/web/assets/javascripts/`
+In the older version of this app, there was two steps to compile the js, the new Hanami version only
+requires us to add files into app/assets/js, but this may still be useful for debugging.
 
-`npx browserify apps/web/assets/javascripts/src/* -o apps/web/assets/javascripts/application.js -t [ babelify --presets [ @babel/preset-env ] --plugins [ babel-plugin-transform-class-properties ] ]`
+`npx babel app/assets/js/src/* --out-dir app/assets/js/`
+
+`npx browserify app/assets/js/src/* -o app/assets/js/application.js -t [ babelify --presets [ @babel/preset-env ] --plugins [ babel-plugin-transform-class-properties ] ]`
 
 ## Setup
 

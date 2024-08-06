@@ -3,7 +3,7 @@ const { default: axios } = require('axios');
 const http = require('axios');
 const deepmerge = require('deepmerge');
 
-module.exports = class RecipeClient {
+class RecipeClient {
   constructor({ appKey, appId }) {
     this.appKey = appKey;
     this.appId = appId;
@@ -84,3 +84,5 @@ module.exports = class RecipeClient {
     return this.get(`*search?${params}`, {});
   }
 };
+
+export default RecipeClient;

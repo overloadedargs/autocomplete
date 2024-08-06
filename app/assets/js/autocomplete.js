@@ -1,6 +1,5 @@
-import RecipeClient from './RecipeClient';
-
-var debounce = require('./debounce');
+import debounce from './debounce';
+import RecipeClient from './RecipeClient'
 
 const client = new RecipeClient({
   appId: '',
