@@ -2,6 +2,11 @@
 
 Welcome to Recipes Search Finder
 
+For development purposes and testing because of CORS issues, you can use a local proxy, 
+
+```npm install --save-dev local-cors-proxy```
+```lcp --proxyUrl http://api.edamam.com/```
+
 ## Using TailwindCSS
 
 By default tailwind will build main.css from the known tailwind css in templates, check tailwind.config.js
@@ -52,8 +57,5 @@ How to prepare (create and migrate) DB for `development` and `test` environments
 
 % HANAMI_ENV=test bundle exec hanami db prepare
 ```
-
-For development purposes and testing to get around CORS issues a local proxy is used, npm install --save-dev local-cors-proxy
-lcp --proxyUrl http://api.edamam.com/
 
 Explore Hanami [guides](https://guides.hanamirb.org/), [API docs](http://docs.hanamirb.org/1.3.5/), or jump in [chat](http://chat.hanamirb.org) for help. Enjoy! 🌸
