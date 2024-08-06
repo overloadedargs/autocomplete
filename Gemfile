@@ -4,6 +4,8 @@
 
 source "https://rubygems.org"
 
+# gem 'hanami',       '~> 2.0.1'
+# gem 'hanami-model' # previous hanami
 gem "hanami", "~> 2.1"
 gem "hanami-assets", "~> 2.1"
 gem "hanami-controller", "~> 2.1"
@@ -18,6 +20,9 @@ gem "rake"
 group :development do
   gem "hanami-webconsole", "~> 2.1"
   gem "guard-puma"
+  # Code reloading
+  # See: https://guides.hanamirb.org/projects/code-reloading
+  # gem 'shotgun', platforms: :ruby
 end
 
 group :development, :test do
@@ -35,32 +40,8 @@ end
 group :test do
   gem "capybara"
   gem "rack-test"
+  gem 'selenium-webdriver'
 end
 
-# gem 'rake'
-# gem 'hanami',       '~> 2.0.1'
-# gem 'hanami-model'
 # gem 'nokogiri'
-
 # gem 'sqlite3'
-
-# group :development do
-#   # Code reloading
-#   # See: https://guides.hanamirb.org/projects/code-reloading
-#   gem 'shotgun', platforms: :ruby
-#   gem 'hanami-webconsole'
-# end
-
-# group :test, :development do
-#   gem 'dotenv', '~> 2.4'
-# end
-
-# group :test do
-#   gem 'rspec'
-#   gem 'capybara'
-#   gem 'selenium-webdriver'
-# end
-
-# group :production do
-#   # gem 'puma'
-# end
