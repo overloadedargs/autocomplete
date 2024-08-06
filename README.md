@@ -4,7 +4,7 @@ Welcome to Recipes Search Finder
 
 ## Using TailwindCSS
 
-By default tailwind will build main.css from the known tailwind css in templates, check the tailwind config
+By default tailwind will build main.css from the known tailwind css in templates, check tailwind.config.js
 
 ```npx tailwindcss -i app/assets/css/src/main.css -o app/assets/css/main.css --watch```
 
