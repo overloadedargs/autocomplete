@@ -5,6 +5,7 @@ Welcome to Recipes Search Finder
 For development purposes and testing because of CORS issues, you can use a local proxy, 
 
 ```npm install --save-dev local-cors-proxy```
+
 ```lcp --proxyUrl http://api.edamam.com/```
 
 ## Using TailwindCSS
@@ -19,12 +20,12 @@ Hanami also needs to compile assets into public/assets, check assets/js/app.js f
 
 ## Compiling es6
 
-In the older version of this app, there was two steps to compile the js, the new Hanami version only
+In the older version of this app, there were extra steps to compile the js, the new Hanami version only
 requires us to add files into app/assets/js, but this may still be useful for debugging.
 
 `npx babel app/assets/js/src/* --out-dir app/assets/js/`
 
-`npx browserify app/assets/js/src/* -o app/assets/js/application.js -t [ babelify --presets [ @babel/preset-env ] --plugins [ babel-plugin-transform-class-properties ] ]`
+```npx browserify app/assets/js/src/* -o app/assets/js/application.js -t [ babelify --presets [ @babel/preset-env ] --plugins [ babel-plugin-transform-class-properties ] ]```
 
 ## Setup
 
