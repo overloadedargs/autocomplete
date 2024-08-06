@@ -5,9 +5,11 @@ Welcome to Recipes Search Finder
 ## Using TailwindCSS
 
 By default tailwind will build main.css from the known tailwind css in templates, check the tailwind config
+
 ```npx tailwindcss -i app/assets/css/src/main.css -o app/assets/css/main.css --watch```
 
 Hanami also needs to compile assets into public/assets, check assets/js/app.js for includes.
+
 ```hanami assets compile```
 
 How to run the development console:
