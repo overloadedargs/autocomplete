@@ -16,6 +16,8 @@ gem "hanami-view", "~> 2.1"
 gem "dry-types", "~> 1.0", ">= 1.6.1"
 gem "puma"
 gem "rake"
+gem "rack-cors"
+gem "rest-client"
 
 group :development do
   gem "hanami-webconsole", "~> 2.1"

@@ -1,15 +1,16 @@
 import debounce from './debounce';
-import RecipeClient from './RecipeClient'
+import RecipeClient from './recipeClient';
 
-const client = new RecipeClient({
-  appId: '',
-  appKey: ''
-});
+const client = new RecipeClient();
 
 function callAPI(queryString) {
-  let results = client.search({ query: queryString });
-  return results;
+  result = client.search({ query: queryString }).then((result) => handleSearchResult(result));
 }
+
+function handleSearchResult(results) {
+  console.log(results);
+  return results;
+};
 
 // DOM elements
 const searchInput = document.querySelector('.search-input');

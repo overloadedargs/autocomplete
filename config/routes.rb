@@ -12,5 +12,6 @@ module Autocomplete
 
     #get "/recipe_search", to: "recipe_search.index" 
     get "/finder", to: "finder.index"
+    post "/recipe_search", to: "recipe_search.index"
   end
 end
