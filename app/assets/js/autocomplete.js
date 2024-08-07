@@ -4,13 +4,10 @@ import RecipeClient from './recipeClient';
 const client = new RecipeClient();
 
 function callAPI(queryString) {
-  result = client.search({ query: queryString }).then((result) => handleSearchResult(result));
-}
+  let response = client.getSearchResult({ query: queryString });
 
-function handleSearchResult(results) {
-  console.log(results);
-  return results;
-};
+  return response;
+}
 
 // DOM elements
 const searchInput = document.querySelector('.search-input');
@@ -28,31 +25,57 @@ function displayMatches() {
   }
 
   matches.then(data => {
-    data.hits.forEach(recipe => {
+    JSON.parse(data).hits.forEach(recipe => {
       let clone = suggestions.cloneNode(true);
-      let recipeName = clone.querySelector('.recipe-name');
-      let dishType = clone.querySelector('.dish-type');
-      let calories = clone.querySelector('.calories');
-      let ingredients = clone.querySelector('.ingredients');
-      let image = clone.querySelector('.recipe-image');
-      let link = clone.querySelector('.recipe-url');
-      recipeName.innerHTML = `Name: ${recipe.recipe.label}`;
-      dishType.innerHTML = `Dish Type: ${recipe.recipe.dishType[0]}`;
-      calories.innerHTML = `Calories: ${Math.round(recipe.recipe.calories)}`;
-      ingredients.innerHTML = `Ingredients: ${recipe.recipe.ingredientLines.join(', ')} `;
-      link.href = recipe.recipe.url;
-      image.src = recipe.recipe.image;
+
+      setFields(clone, recipe);
+
       list.appendChild(clone);
       return;
-    });
-  }).catch(err => {
-    let clone = suggestions.cloneNode(true);
-    let recipeName = clone.querySelector('.recipe-name');
-    let image = clone.querySelector('.recipe-image');
-    image.src = '';
-    recipeName.innerHTML = `${err.message}`;
-    list.appendChild(clone);
   });
+}).catch (err => {
+  let clone = suggestions.cloneNode(true);
+  let recipeName = clone.querySelector('.recipe-name');
+  let image = clone.querySelector('.recipe-image');
+  image.src = '';
+  recipeName.innerHTML = `${err.message}`;
+  list.appendChild(clone);
+});
+}
+
+function setFields(clone, recipe) {
+  let fields = {
+    recipeName : '.recipe-name',
+    dishType : '.dish-type',
+    calories : '.calories',
+    ingredients : '.ingredients',
+    image : '.recipe-image',
+    link : '.recipe-url'
+  };
+  
+  clone.querySelector(fields.recipeName).innerHTML = recipeLabel(recipe);
+  clone.querySelector(fields.dishType).innerHTML = dishType(recipe);
+  clone.querySelector(fields.calories).innerHTML = calories(recipe);
+  clone.querySelector(fields.ingredients).innerHTML = ingredients(recipe);
+
+  clone.querySelector(fields.image).src = recipe.recipe.image;
+  clone.querySelector(fields.ingredients).href = recipe.recipe.url;
+}
+
+function recipeLabel(recipe) {
+  return `Name: ${recipe.recipe.label}`;
+}
+
+function dishType(recipe) {
+  return `Dish Type: ${recipe.recipe.dishType[0]}`;
+}
+
+function calories(recipe) {
+  return `Calories: ${Math.round(recipe.recipe.calories)}`
+}
+
+function ingredients(recipe) {
+  return `Ingredients: ${recipe.recipe.ingredientLines.join(', ')} `;
 }
 
 var debounceMatches = debounce.debounce(function () {

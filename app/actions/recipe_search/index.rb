@@ -19,7 +19,7 @@ module Autocomplete
           recipes = RestClient.get("https://api.edamam.com/search?q=#{search}&app_id=#{app_id}&app_key=#{app_key}", headers={})
 
           response.format = :json
-          response.body = recipes
+          response.body = recipes.to_json
         end
       end
     end

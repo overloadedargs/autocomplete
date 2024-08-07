@@ -4,26 +4,24 @@ class RecipeClient {
   // constructor() {
   // }
 
-  async search(query) {
-    let response = "";
-    
-    fetch(`http://localhost:2300/recipe_search`, { 
+  search(query) {    
+    let response = fetch(`http://localhost:2300/recipe_search`, { 
       method: "post", 
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(query),  
-      })
-      .then(response => response.json())
-      .then(data => console.log(data))
-      .catch(error => console.error(error));
-    return response;
-  }
+      body: JSON.stringify(query)})
+        .then((response) => response.json())
+        .then((data) => {
+           return data;
+        });
+      return response;
+    };
   
-  async getSearchResult(query) {
-    const results = await this.search({ q: query });
-    return results;
+  getSearchResult(query) {
+    let result = this.search(query);
+    return result;
   }
 }
 
